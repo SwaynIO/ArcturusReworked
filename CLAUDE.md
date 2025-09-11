@@ -237,6 +237,41 @@ Plugins extend `HabboPlugin` and use annotations like `@EventHandler` for event 
 - **AntiDDoSProtection**: Traffic pattern analysis with automatic attack mitigation
 - **SecurityAuditor**: Comprehensive event logging and real-time threat monitoring
 
+#### Distributed Cache System
+- **AdvancedDistributedCache**: Multi-node distributed caching with intelligent clustering
+- **ConsistentHashingRouter**: Distributed node selection with automatic replication
+- **CacheCoherenceManager**: Real-time cache invalidation and consistency management
+- **PredictivePrefetcher**: Machine learning-based cache warming with access pattern analysis
+- **CacheAnalytics**: Performance monitoring with hit rates, latency tracking, and utilization metrics
+
+#### Intelligent Search Engine
+- **IntelligentSearchEngine**: ML-powered search with advanced relevance scoring
+- **TfIdfCalculator**: Term frequency-inverse document frequency scoring with optimizations
+- **FuzzyMatcher**: Advanced string similarity with Levenshtein distance and phonetic matching
+- **DocumentIndexer**: Real-time indexing with incremental updates and background processing
+- **SearchAnalytics**: Query performance analysis, popularity tracking, and optimization insights
+
+#### Auto-Clustering System
+- **AutoClusteringSystem**: Intelligent cluster management with predictive scaling
+- **NodeHealthMonitor**: Comprehensive health checks with automatic failover and recovery
+- **ServiceDiscovery**: Dynamic service registration and discovery with health probes
+- **LoadBalancer**: Adaptive load distribution with node capacity awareness
+- **ClusterAnalytics**: Real-time performance monitoring and resource optimization
+
+#### ML Database Optimizer
+- **MLDatabaseOptimizer**: Machine learning-powered database optimization
+- **QueryAnalyzer**: Intelligent query pattern recognition with performance prediction
+- **IndexSuggestionEngine**: Automated index recommendations based on query patterns
+- **ConnectionPoolOptimizer**: ML-driven connection pool sizing and configuration
+- **PerformanceTuner**: Real-time database parameter optimization with AI recommendations
+
+#### Real-Time Streaming System
+- **RealTimeStreamingSystem**: High-performance event streaming with comprehensive features
+- **EventSourcingManager**: Complete event history with replay capabilities and snapshots
+- **StreamProcessor**: High-throughput event processing with backpressure management
+- **DataTransformer**: Real-time data enrichment and format conversion
+- **StreamAnalytics**: Performance monitoring with throughput, latency, and error tracking
+
 ### Configuration Changes
 - Added `debug.sql` configuration option for production environments
 - Enhanced MySQL connection parameters for security and performance
