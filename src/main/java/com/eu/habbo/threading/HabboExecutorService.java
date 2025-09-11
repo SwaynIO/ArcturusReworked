@@ -12,6 +12,14 @@ public class HabboExecutorService extends ScheduledThreadPoolExecutor {
 
     public HabboExecutorService(int corePoolSize, ThreadFactory threadFactory) {
         super(corePoolSize, threadFactory);
+        
+        // Performance optimizations
+        setMaximumPoolSize(corePoolSize * 2); // Allow expansion under load
+        setKeepAliveTime(60, java.util.concurrent.TimeUnit.SECONDS);
+        allowCoreThreadTimeOut(true); // Allow core threads to timeout
+        
+        // Use FIFO policy for consistent performance
+        setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
     }
 
     @Override

@@ -63,20 +63,25 @@ public class Database {
         return this.databasePool;
     }
 
+    // Cache compiled patterns for better performance
+    private static final Map<String, Pattern> PATTERN_CACHE = new java.util.concurrent.ConcurrentHashMap<>();
+    
     public static PreparedStatement preparedStatementWithParams(Connection connection, String query, THashMap<String, Object> queryParams) throws SQLException {
-        THashMap<Integer, Object> params = new THashMap<Integer, Object>();
-        THashSet<String> quotedParams = new THashSet<>();
+        THashMap<Integer, Object> params = new THashMap<>();
+        THashSet<String> quotedParams = new THashSet<>(queryParams.size());
 
+        // Pre-allocate with known size for better performance
         for(String key : queryParams.keySet()) {
             quotedParams.add(Pattern.quote(key));
         }
 
         String regex = "(" + String.join("|", quotedParams) + ")";
-
-        Matcher m = Pattern.compile(regex).matcher(query);
+        
+        // Use cached pattern for better performance
+        Pattern pattern = PATTERN_CACHE.computeIfAbsent(regex, Pattern::compile);
+        Matcher m = pattern.matcher(query);
 
         int i = 1;
-
         while (m.find()) {
             try {
                 String paramName = m.group(1);
@@ -97,24 +102,25 @@ public class Database {
 
         PreparedStatement statement = connection.prepareStatement(query.replaceAll(regex, "?"));
 
-        for(Map.Entry<Integer, Object> set : params.entrySet()) {
-            if(set.getValue().getClass() == String.class) {
-                statement.setString(set.getKey(), (String)set.getValue());
-            }
-            else if(set.getValue().getClass() == Integer.class) {
-                statement.setInt(set.getKey(), (Integer)set.getValue());
-            }
-            else if(set.getValue().getClass() == Double.class) {
-                statement.setDouble(set.getKey(), (Double)set.getValue());
-            }
-            else if(set.getValue().getClass() == Float.class) {
-                statement.setFloat(set.getKey(), (Float)set.getValue());
-            }
-            else if(set.getValue().getClass() == Long.class) {
-                statement.setLong(set.getKey(), (Long)set.getValue());
-            }
-            else {
-                statement.setObject(set.getKey(), set.getValue());
+        // Optimized parameter setting using instanceof for better performance
+        for(Map.Entry<Integer, Object> entry : params.entrySet()) {
+            Object value = entry.getValue();
+            int index = entry.getKey();
+            
+            if (value instanceof String) {
+                statement.setString(index, (String) value);
+            } else if (value instanceof Integer) {
+                statement.setInt(index, (Integer) value);
+            } else if (value instanceof Long) {
+                statement.setLong(index, (Long) value);
+            } else if (value instanceof Double) {
+                statement.setDouble(index, (Double) value);
+            } else if (value instanceof Float) {
+                statement.setFloat(index, (Float) value);
+            } else if (value instanceof Boolean) {
+                statement.setBoolean(index, (Boolean) value);
+            } else {
+                statement.setObject(index, value);
             }
         }
 
