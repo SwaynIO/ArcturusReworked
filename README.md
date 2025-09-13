@@ -429,11 +429,17 @@ public void initializeOptimizations() {
     // Setup network optimizer
     AdvancedNetworkOptimizer networkOpt = AdvancedNetworkOptimizer.getInstance();
 
+    // Initialize advanced pathfinding
+    AdvancedPathfindingEngine pathfinding = AdvancedPathfindingEngine.getInstance();
+    PetIntelligentPathfinding petAI = PetIntelligentPathfinding.getInstance();
+
     // Get comprehensive stats
     String systemStats = monitor.getComprehensiveStats();
     String cacheStats = cache.getComprehensiveStats();
     String queryStats = queryOpt.getComprehensiveStats();
     String networkStats = networkOpt.getComprehensiveStats();
+    String pathfindingStats = pathfinding.getComprehensiveStats();
+    String petAIStats = petAI.getComprehensiveStats();
 }
 ```
 
