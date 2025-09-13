@@ -387,6 +387,24 @@ monitoring.analysis.interval=30000
 - **Features**: Adaptive compression, packet batching, bandwidth optimization
 - **Usage**: `AdvancedNetworkOptimizer.getInstance().optimizeOutgoingPacket(packet, connection)`
 
+#### 🧠 `AdvancedPathfindingEngine`
+- **Location**: `com.eu.habbo.core.pathfinding.AdvancedPathfindingEngine`
+- **Purpose**: Revolutionary AI-powered pathfinding with caching and prediction
+- **Features**: A* optimization, movement prediction, intelligent caching, asynchronous processing
+- **Usage**: `AdvancedPathfindingEngine.getInstance().findOptimalPath(start, end, unit, room)`
+
+#### 🐾 `PetIntelligentPathfinding`
+- **Location**: `com.eu.habbo.core.pathfinding.PetIntelligentPathfinding`
+- **Purpose**: Advanced AI pathfinding for pets with behavioral analysis
+- **Features**: Owner following, emotional states, environmental awareness, natural movement
+- **Usage**: `PetIntelligentPathfinding.getInstance().findPetPath(pet, room)`
+
+#### 🔗 `PathfindingIntegration`
+- **Location**: `com.eu.habbo.core.pathfinding.PathfindingIntegration`
+- **Purpose**: Seamless integration between legacy and advanced pathfinding systems
+- **Features**: Backward compatibility, smart algorithm selection, batch processing
+- **Usage**: `PathfindingIntegration.findPath(layout, oldTile, newTile, goalLocation, unit, isWalkthrough)`
+
 #### 📊 `RealTimePerformanceMonitor`
 - **Location**: `com.eu.habbo.core.monitoring.RealTimePerformanceMonitor`
 - **Purpose**: Comprehensive system health monitoring
